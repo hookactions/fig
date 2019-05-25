@@ -16,7 +16,7 @@ package main
 import (
 	"fmt"
 	
-	_ "github.com/hookactions/fig/aws"
+	_ "github.com/hookactions/fig/aws/auto"
 	"github.com/spf13/viper"
 )
 
