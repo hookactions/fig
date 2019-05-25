@@ -7,28 +7,43 @@
 
 ## AWS
 
-Automatically pre-process config values, by reading secrets from AWS.
+Pre-process config values by reading secrets from AWS.
 
 ```go
 // main.go
 package main
 
 import (
+	"context"
 	"fmt"
-	
-	_ "github.com/hookactions/fig/aws/auto"
+
+	figAws "github.com/hookactions/fig/aws"
 	"github.com/spf13/viper"
 )
 
 func main() {
-	viper.AutomaticEnv()
+	viper.SetConfigName("config")
+	viper.AddConfigPath(".")
+
+	if err := viper.ReadInConfig(); err != nil {
+		panic(err)
+	}
+
+	fig, err := figAws.New(nil)
+	if err != nil {
+		panic(err)
+	}
+
+	fig.PreProcessConfigItems(context.Background())
+
 	value := viper.GetString("my_var")
 	fmt.Println(value)
 }
 ```
 
 ```bash
-MY_VAR=sm://my_var go run main.go
+echo "my_var: sm://foo" >> config.yaml
+go run main.go
 ```
 
 ### Supported prefixes
