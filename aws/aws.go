@@ -61,16 +61,16 @@ func (f *Fig) preProcessConfigItem(ctx context.Context, key string, value interf
 		}
 	} else if v, ok := value.(string); ok {
 		if strings.HasPrefix(v, secretsManagerStringPrefix) {
-			newValue := f.loadStringValueFromSecretsManager(ctx, v)
+			newValue := f.loadStringValueFromSecretsManager(ctx, strings.TrimPrefix(v, secretsManagerStringPrefix))
 			f.viper.Set(key, newValue)
 		} else if strings.HasPrefix(v, secretsManagerBinaryPrefix) {
-			newValue := f.loadBinaryValueFromSecretsManager(ctx, v)
+			newValue := f.loadBinaryValueFromSecretsManager(ctx, strings.TrimPrefix(v, secretsManagerBinaryPrefix))
 			f.viper.Set(key, newValue)
 		} else if strings.HasPrefix(v, parameterStoreStringPrefix) {
-			newValue := f.loadStringValueFromParameterStore(ctx, v, f.DecryptParameterStoreValues)
+			newValue := f.loadStringValueFromParameterStore(ctx, strings.TrimPrefix(v, parameterStoreStringPrefix), f.DecryptParameterStoreValues)
 			f.viper.Set(key, newValue)
 		} else if strings.HasPrefix(v, parameterStoreBinaryPrefix) {
-			newValue := f.loadBinaryValueFromParameterStore(ctx, v, f.DecryptParameterStoreValues)
+			newValue := f.loadBinaryValueFromParameterStore(ctx, strings.TrimPrefix(v, parameterStoreBinaryPrefix), f.DecryptParameterStoreValues)
 			f.viper.Set(key, newValue)
 		}
 	}
