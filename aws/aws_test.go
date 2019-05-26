@@ -71,6 +71,19 @@ func (m *mockParameterStoreClient) GetParameterRequest(in *ssm.GetParameterInput
 }
 
 func TestFig_PreProcessConfigItems(t *testing.T) {
+	t.Run("NonPrefixedValues", func(t *testing.T) {
+		fig := &Fig{}
+		fig.viper = viper.New()
+
+		fig.viper.Set("foo1", "bar")
+		fig.viper.Set("foo.bar.baz", "test")
+
+		fig.PreProcessConfigItems(context.Background())
+
+		assert.Equal(t, "bar", fig.viper.Get("foo1"))
+		assert.Equal(t, "test", fig.viper.Get("foo.bar.baz"))
+	})
+
 	t.Run("SecretsManager", func(t *testing.T) {
 		manager := &mockSecretManagerClient{}
 
