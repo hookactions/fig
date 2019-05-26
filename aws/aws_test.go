@@ -6,15 +6,12 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/aws/aws-sdk-go-v2/service/ssm"
-
-	"github.com/aws/aws-sdk-go-v2/service/ssm/ssmiface"
-
 	"github.com/aws/aws-sdk-go-v2/aws"
-	"github.com/spf13/viper"
-
 	"github.com/aws/aws-sdk-go-v2/service/secretsmanager"
 	"github.com/aws/aws-sdk-go-v2/service/secretsmanager/secretsmanageriface"
+	"github.com/aws/aws-sdk-go-v2/service/ssm"
+	"github.com/aws/aws-sdk-go-v2/service/ssm/ssmiface"
+	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"
 )
 

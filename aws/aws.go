@@ -6,13 +6,12 @@ import (
 	"fmt"
 	"regexp"
 
-	"github.com/aws/aws-sdk-go-v2/service/secretsmanager/secretsmanageriface"
-	"github.com/aws/aws-sdk-go-v2/service/ssm/ssmiface"
-
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/aws/external"
 	"github.com/aws/aws-sdk-go-v2/service/secretsmanager"
+	"github.com/aws/aws-sdk-go-v2/service/secretsmanager/secretsmanageriface"
 	"github.com/aws/aws-sdk-go-v2/service/ssm"
+	"github.com/aws/aws-sdk-go-v2/service/ssm/ssmiface"
 	"github.com/pkg/errors"
 	"github.com/spf13/viper"
 )
