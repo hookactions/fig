@@ -1,7 +1,6 @@
 # fig
-<p align="center">
-  <img src="docs/header.png" />
-</p>
+![header](docs/header.png)
+[![CircleCI](https://circleci.com/gh/hookactions/fig.svg?style=svg)](https://circleci.com/gh/hookactions/fig)
 
 # Usage
 
