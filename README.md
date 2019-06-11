@@ -52,3 +52,38 @@ go run main.go
   - _Note_: decryption of the value is automatically requested.
 - `ssmb64://` – Get base64 encoded binary value from [parameter store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html)
   - _Note_: decryption of the value is automatically requested.
+
+## AWS via Env
+
+Pre-process config values by reading secrets from AWS.
+
+```go
+// main.go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+
+	"github.com/hookactions/fig/awsEnv"
+)
+
+func main() {
+	fig, err := awsEnv.New()
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(fig.GetEnv(context.Background(), "MY_VAR"))
+}
+```
+
+```bash
+MY_VAR=sm://foo go run main.go
+```
+
+### Supported prefixes
+- `sm://` – Get string value from [secrets manager](https://aws.amazon.com/secrets-manager/)
+- `ssm://` – Get string value from [parameter store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html)
+  - _Note_: decryption of the value is automatically requested.
