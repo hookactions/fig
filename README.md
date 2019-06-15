@@ -1,3 +1,5 @@
+**No longer maintained, in favor of: https://github.com/hookactions/config**
+
 # fig
 ![header](docs/header.png)
 [![CircleCI](https://circleci.com/gh/hookactions/fig.svg?style=svg)](https://circleci.com/gh/hookactions/fig)
